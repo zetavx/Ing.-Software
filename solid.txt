@@ -1,0 +1,147 @@
+public class Figuras_geometricas_solid {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main (String[] args)  {
+        System.out.println("Hola este es mi proyecto en el cual voy a explicar los 5 principios SOLID,\n en practica de codigos el cual tomara como tema las figuras geometricas");
+        System.out.println(",Solid es un acrónimo inventado por Ro  bert C.Martin para establecer los cinco \nprincipios básicos de la programación orientada a objetos y diseño.  ");
+        Scanner sn = new Scanner(System.in);
+        System.out.println("1er. PRINCIPIO: Single Responsibility Principle\n" +
+"\n" +
+"    Una Clase debe tener una única responsabilidad.\n" +
+"\n" +
+"Este principio está  basado en el concepto de Cohesión. Ese concepto que seguramente les dieron en algún curso \n "
+                + "introductorio a la programación orientada a objetos y que representa la medida en la cual una \n"
+                + "clase realiza una única función, es decir, una clase debe tener un único trabajo. Clases que \n"
+                + "presentan una alta cohesión son más fáciles de entender y mantener.");
+        
+        //segundo Prinicipio
+        System.out.println("2do. PRINICIPIO: Open Close Principle\n" +
+"\n" +
+"    Una Clase debe estar abierta para extensión, pero cerrada para modificación.\n" +
+"\n" +
+"Este principio dice que se pueden agregar nuevas funcionalidades a nuestro sistema sin modificar las clases existentes. \n"
+                + "Un Ejempĺo tenemos una clase que dibuja las figuras geometricas, nos pide dibujar un triangulo \n"
+                + "realizamos las clases aplicando una responsabilida unica, muy bien terminado y probamos y funciona \n"
+                + "pero que pasa si la misma clase debe dibujar mas figuras, entonces nos tocaria modificar nuestra clase \n"
+                + "pero ahi es cuando violamos el 2do. principio. La solucion seria creando nuevas clases acorde a \n"
+                + "las nuevas extenciones. Ejemplo en Codigo aplicando Override");
+       boolean salir = false;
+       int opcion; //Guardaremos la opcion del usuario
+        
+       while(!salir){
+           System.out.println("ELIJA LA FIGURA A DIBUJAR");
+           System.out.println("1. TRIANGULO");
+           System.out.println("2. CUADRADO");
+           System.out.println("3. RECTANGULO");
+           System.out.println("4. PENTAGONO");
+           System.out.println("5. EXAGONO");
+           System.out.println("6. CIRCULO");
+           System.out.println("7. OTRA");
+
+            
+              try {
+ 
+                System.out.println("ELIGA UNA DE LAS OPCIONES");
+                opcion = sn.nextInt();
+ 
+                switch (opcion) {
+                    case 1:
+                        System.out.println("Dibujar Triangulo");
+                        triangulo tri = new triangulo();
+                        tri.dibujar();
+                        break;
+                    case 2:
+                        System.out.println("Dibujar Cuadrado");
+                        cuadrado cua = new cuadrado();
+                        cua.dibujar();
+                        break;
+                    case 3:
+                        System.out.println("Dibujar Rectangulo");
+                        rectangulo rec = new rectangulo();
+                        rec.dibujar();
+                        break;
+                    case 4:
+                        System.out.println("Dibujar Pentagono");
+                         pentagono pen = new pentagono();
+                        pen.dibujar();
+                        break;
+                    case 5:
+                        System.out.println("Dibujar Un Exagono");
+                        exagono exa = new exagono();
+                        exa.dibujar();
+                        break;
+                    case 6:
+                        System.out.println("Dibujar Un Circulo");
+                        break;
+                    case 7:
+                        System.out.println("Esta es una de la ventajas como tenemos separado por clase cada extension"
+                                +"\n que aparesca si ahora surge la necesidad de dibujar otra figura solo se crea una nueva"
+                                + "\n clace que cumpla con lo pedido sin modificar el resto del codigo");
+                        break;
+                                    
+                    case 8:
+                        System.out.println("Adios Baby....!!");
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Solo números entre 1 y 4");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Debes insertar un número");
+                sn.next();
+            }
+       }
+        
+    }
+    
+}
+
+
+//aplicando una responsabilidad unica
+  class figuras { 
+      double altura;
+      int lado;
+      double radio;
+      double base;
+      double posicion_x;
+      double posicion_y;
+      int numero_de_lados;  
+     void dibujar(){
+        dibujar dib = new dibujar();
+        dib.dibujar();
+    };
+}
+
+
+//la clase dibujar aplicado responsabilida unica
+public class dibujar extends figuras{
+    void dibujar(){
+        System.out.println("Usted va a  dibujar una figura");
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Base:");
+        base = sn.nextInt();
+         System.out.println("Altura:");
+        altura = sn.nextInt();
+        System.out.println("Usted Dibujo Un figura de base:"+base+"y con un altura:"+altura);
+    }
+}
+
+
+
+//podemos aplicar Open y closed podemos extender el codigo
+public class cuadrado extends figuras{
+     @Override
+    void dibujar() {
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Lado:");
+        lado = sn.nextInt();
+         System.out.println("punto de Inicio x:");
+        posicion_x = sn.nextInt();
+         System.out.println("punto de Inicio y:");
+        posicion_y = sn.nextInt();
+        System.out.println("Usted Dibujo Un figura el valor del lado es:"+lado+"en punto de partida x:"+posicion_x+"y punto en y:"+posicion_y);
+       System.out.println("dibujaste un cuadrado");
+    }
+}
